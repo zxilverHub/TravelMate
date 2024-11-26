@@ -1,0 +1,65 @@
+{
+    "groupinfo": {
+        "name": "Boracay Community",
+        "online": 80,
+        "icon": "Boracay Community"
+    },
+
+    "users": [
+        {
+            "userid": 1,
+            "username": "Jayson"
+        },
+        
+        {
+            "userid": 5,
+            "username": "Troy"
+        },
+
+        {
+            "userid": 2,
+            "username": "Migz"
+        },
+
+        {
+            "userid": 3,
+            "username": "Kia"
+        },
+        {
+            "userid": 4,
+            "username": "Christian"
+        }
+    ],
+
+    "messages": [
+        {
+            "messageid": 1,
+            "senderid": 1,
+            "message": "Meron! Pwede kang mag-tricycle papunta. Perfect 'yan kung ayaw mo mag-hike pero gusto mo pa rin makita ang lugar."
+        },
+
+        {
+            "messageid": 2,
+            "senderid": 5,
+            "message": "Hello!"
+        },
+
+        {
+            "messageid": 2,
+            "senderid": 2,
+            "message": "Ang ganda doon, lalo na pag umaga ka pumunta abangan mo yung sunrise :))!"
+        },
+
+        {
+            "messageid": 3,
+            "senderid": 3,
+            "message": "Weekdays kami noon pumunta, walang masyadong tao. Solong-solo namin yung place."
+        },
+
+        {
+            "messageid": 4,
+            "senderid": 4,
+            "message": "Sure na sure akong mage-enjoy kayo doon."
+        }
+    ]
+}

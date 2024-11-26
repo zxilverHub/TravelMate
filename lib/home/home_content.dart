@@ -112,7 +112,7 @@ class _HomeContentState extends State<HomeContent> {
                     padding: const EdgeInsets.only(right: 21, left: 21),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

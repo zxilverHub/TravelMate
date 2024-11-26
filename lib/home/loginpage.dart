@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_mate/data/users.dart';
 import 'package:travel_mate/home/home_screen.dart';
 import 'package:travel_mate/home/signuppage.dart';
@@ -283,6 +284,7 @@ class _LoginpageState extends State<Loginpage> {
       if (u.userAccount.emailAddress == email &&
           u.userAccount.password == pass) {
         userLog = u;
+
         return true;
       }
     }

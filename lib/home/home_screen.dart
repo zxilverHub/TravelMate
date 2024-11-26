@@ -31,7 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
         user: widget.user,
       );
     } else if (currentPage == "community") {
-      screen = CommunityPage();
+      screen = CommunityPage(
+        user: widget.user,
+      );
     } else if (currentPage == "destination") {
       screen = DestinationPage();
     } else if (currentPage == "notification") {
