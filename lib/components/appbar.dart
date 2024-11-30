@@ -27,7 +27,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    icon: Image.asset("assets/images/icons/back.png"),
+                    icon: CircleAvatar(
+                      minRadius: 20.0,
+                      maxRadius: 22.0,
+                      child: Image.asset("assets/images/icons/back.png"),
+                    ),
                   ),
                 ],
               ),
@@ -43,7 +47,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       horizontal: 8,
                     ),
                     decoration: BoxDecoration(
-                      color: Color(0XFF5DED2D),
+                      color: Color.fromARGB(255, 88, 224, 42),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Center(

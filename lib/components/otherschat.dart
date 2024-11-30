@@ -17,8 +17,13 @@ class _OthersChatState extends State<OthersChat> {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Image.asset(
-            "assets/images/users/${getUsername(widget.chat["senderid"])}.png"),
+        CircleAvatar(
+          minRadius: 15,
+          maxRadius: 18,
+          child: Image.asset(
+            "assets/images/users/${getUsername(widget.chat["senderid"])}.png",
+          ),
+        ),
         const SizedBox(width: 8),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,

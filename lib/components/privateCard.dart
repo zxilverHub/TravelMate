@@ -23,7 +23,11 @@ class _PrivateCardState extends State<PrivateCard> {
         ),
         child: Row(
           children: [
-            Image.asset("assets/images/users/${widget.user.username}.png"),
+            CircleAvatar(
+                minRadius: 15,
+                maxRadius: 18,
+                child: Image.asset(
+                    "assets/images/users/${widget.user.username}.png")),
             const SizedBox(width: 12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

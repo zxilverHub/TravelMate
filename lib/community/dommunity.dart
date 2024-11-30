@@ -26,9 +26,9 @@ class _CommunityPageState extends State<CommunityPage> {
           top: 70,
           left: 21,
           right: 21,
+          bottom: 0,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text("Comunity", style: titleStyle()),
               const SizedBox(height: 32),
@@ -45,8 +45,7 @@ class _CommunityPageState extends State<CommunityPage> {
               CornerCard(),
               const SizedBox(height: 32),
               Text("Private chats", style: titleStyle()),
-              Container(
-                height: 510,
+              Expanded(
                 child: ListView.builder(
                   itemCount: privateChats.length,
                   itemBuilder: (_, i) {

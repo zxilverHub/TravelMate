@@ -17,9 +17,13 @@ class GroupChat extends StatefulWidget {
 }
 
 class _GroupChatState extends State<GroupChat> {
+  final FocusNode _focusNode = FocusNode();
+
   List<Map<String, dynamic>>? chats;
   List<Map<String, dynamic>>? users;
   Map<String, dynamic>? gcinfo;
+
+  var msgCtrl = TextEditingController();
 
   @override
   void initState() {
@@ -43,8 +47,6 @@ class _GroupChatState extends State<GroupChat> {
       users = (jsonData['users'] as List<dynamic>).cast<Map<String, dynamic>>();
       gcinfo = jsonData['groupinfo'] as Map<String, dynamic>;
     });
-
-    print("Data Loaded Successfully");
   }
 
   @override
@@ -58,38 +60,33 @@ class _GroupChatState extends State<GroupChat> {
             right: 21,
             bottom: 21,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomAppBar(),
                 Expanded(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width - 42,
-                    child: ListView.builder(
-                        reverse: true,
-                        itemCount: chats!.length,
-                        itemBuilder: (_, i) {
-                          final chat = chats![i];
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 12,
-                            ),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width - 42,
-                              child: widget.user.userid != chat["senderid"]
-                                  ? OthersChat(
-                                      chat: chat,
-                                      users: users,
-                                    )
-                                  : MyChat(
-                                      chat: chat,
-                                      users: users,
-                                      user: widget.user,
-                                    ),
-                            ),
-                          );
-                        }),
-                    // color: Colors.red,
-                  ),
+                  child: ListView.builder(
+                      reverse: true,
+                      itemCount: chats!.length,
+                      itemBuilder: (_, i) {
+                        final chat = chats![i];
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 12,
+                          ),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width - 42,
+                            child: widget.user.userid != chat["senderid"]
+                                ? OthersChat(
+                                    chat: chat,
+                                    users: users,
+                                  )
+                                : MyChat(
+                                    chat: chat,
+                                    users: users,
+                                    user: widget.user,
+                                  ),
+                          ),
+                        );
+                      }),
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width - 42,
@@ -107,6 +104,8 @@ class _GroupChatState extends State<GroupChat> {
                       ),
                       Expanded(
                         child: TextField(
+                          focusNode: _focusNode,
+                          controller: msgCtrl,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
@@ -121,17 +120,12 @@ class _GroupChatState extends State<GroupChat> {
                           ),
                         ),
                       ),
-
-                      // IconButton(
-                      //   onPressed: () {},
-                      //   icon: Icon(
-                      //     Icons.send,
-                      //     color: Color(0XFF4DC3FF),
-                      //   ),
-                      // ),
-
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (msgCtrl.text != "") {
+                            sendMessage();
+                          }
+                        },
                         child: Text("SEND", style: sendStyle()),
                       ),
                     ],
@@ -181,5 +175,19 @@ class _GroupChatState extends State<GroupChat> {
       fontWeight: FontWeight.w600,
       color: Colors.white,
     );
+  }
+
+  void sendMessage() {
+    int msgId = chats!.first["messageid"] + 1;
+    Map<String, dynamic> newMsg = {
+      "messageid": msgId,
+      "senderid": widget.user.userid,
+      "message": msgCtrl.text
+    };
+
+    setState(() {
+      msgCtrl.text = '';
+      chats!.insert(0, newMsg);
+    });
   }
 }

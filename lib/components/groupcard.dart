@@ -18,7 +18,11 @@ class _GroupCardState extends State<GroupCard> {
       ),
       child: Row(
         children: [
-          Image.asset("assets/images/community/comicon.png"),
+          CircleAvatar(
+            minRadius: 22.0,
+            maxRadius: 25.0,
+            child: Image.asset("assets/images/community/comicon.png"),
+          ),
           const SizedBox(width: 12),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

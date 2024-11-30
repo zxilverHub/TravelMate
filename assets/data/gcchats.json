@@ -45,21 +45,27 @@
         },
 
         {
-            "messageid": 2,
+            "messageid": 3,
             "senderid": 2,
             "message": "Ang ganda doon, lalo na pag umaga ka pumunta abangan mo yung sunrise :))!"
         },
 
         {
-            "messageid": 3,
+            "messageid": 4,
             "senderid": 3,
             "message": "Weekdays kami noon pumunta, walang masyadong tao. Solong-solo namin yung place."
         },
 
         {
-            "messageid": 4,
+            "messageid": 5,
             "senderid": 4,
             "message": "Sure na sure akong mage-enjoy kayo doon."
+        },
+
+        {
+            "messageid": 6,
+            "senderid": 4,
+            "message": "Mayron po ba nakakakilala kay Vince Bautista dito?"
         }
     ]
 }

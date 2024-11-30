@@ -25,7 +25,11 @@ class _CornerCardState extends State<CornerCard> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.asset("assets/images/community/cornericon.png"),
+              CircleAvatar(
+                minRadius: 15,
+                maxRadius: 18,
+                child: Image.asset("assets/images/community/cornericon.png"),
+              ),
               const SizedBox(width: 18),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
