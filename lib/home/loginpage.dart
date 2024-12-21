@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_mate/data/users.dart';
+import 'package:travel_mate/helper/travelmatedb.dart';
+import 'package:travel_mate/helper/userdb.dart';
 import 'package:travel_mate/home/home_screen.dart';
 import 'package:travel_mate/home/signuppage.dart';
+import 'package:travel_mate/main.dart';
 import 'package:travel_mate/models/userinfo.dart';
 
 class Loginpage extends StatefulWidget {
@@ -140,13 +144,7 @@ class _LoginpageState extends State<Loginpage> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        if (validateAccount()) {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => HomeScreen(user: userLog!),
-                            ),
-                          );
-                        }
+                        manageLogin();
                       },
                       child: Text(
                         "Sign in",
@@ -275,25 +273,26 @@ class _LoginpageState extends State<Loginpage> {
     );
   }
 
-  bool validateAccount() {
-    String email = emailCtrl.text;
-    String pass = passCtrl.text;
+  void manageLogin() async {
+    var uid = await Travelmatedb.userLogIn({
+      Userdb.email: emailCtrl.text,
+      Userdb.password: passCtrl.text,
+    });
 
-    for (int i = 0; i < users.length; i++) {
-      User u = users[i];
-      if (u.userAccount.emailAddress == email &&
-          u.userAccount.password == pass) {
-        userLog = u;
-
-        return true;
-      }
+    if (uid != 0) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (_) => HomeScreen(
+            userid: uid,
+          ),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Incorrect email or password"),
+        ),
+      );
     }
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("Incorrect email or password"),
-      ),
-    );
-    return false;
   }
 }

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:travel_mate/helper/travelmatedb.dart';
+import 'package:travel_mate/helper/userdb.dart';
+import 'package:travel_mate/home/home_screen.dart';
 import 'package:travel_mate/home/loginpage.dart';
+import 'package:travel_mate/models/userinfo.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -12,6 +16,10 @@ class _SignUpPageState extends State<SignUpPage> {
   bool isShowPass = false;
 
   bool isAgreed = false;
+
+  var usernameCtrl = TextEditingController();
+  var emailCtrl = TextEditingController();
+  var passwordCtrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     SizedBox(height: 18),
                     TextField(
+                      controller: usernameCtrl,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -72,6 +81,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     SizedBox(height: 18),
                     TextField(
+                      controller: emailCtrl,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -88,6 +98,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     SizedBox(height: 18),
                     TextField(
+                      controller: passwordCtrl,
                       obscureText: !isShowPass,
                       decoration: InputDecoration(
                         suffixIcon: TextButton(
@@ -155,7 +166,9 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     SizedBox(height: 8),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        manageSignUp();
+                      },
                       child: Text(
                         "Create",
                         style: TextStyle(
@@ -290,5 +303,38 @@ class _SignUpPageState extends State<SignUpPage> {
       color: const Color.fromARGB(255, 116, 112, 112),
       decoration: isLink ? TextDecoration.underline : TextDecoration.none,
     );
+  }
+
+  void manageSignUp() async {
+    print("HAYS");
+    int userid = await Travelmatedb.addNewUser({
+      Userdb.username: usernameCtrl.text,
+      Userdb.email: emailCtrl.text,
+      Userdb.password: passwordCtrl.text,
+      Userdb.profileURL: "noprofile",
+    });
+
+    if (userid != 0) {
+      setState(() {
+        usernameCtrl.text = "";
+        emailCtrl.text = "";
+        passwordCtrl.text = "";
+
+        // placeholder
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => HomeScreen(
+              userid: userid,
+            ),
+          ),
+        );
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Email is already exist"),
+        ),
+      );
+    }
   }
 }

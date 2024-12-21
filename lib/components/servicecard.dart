@@ -151,7 +151,7 @@ class _ServiceCardState extends State<ServiceCard> {
                   ),
                   onPressed: () {},
                   icon: Icon(
-                    Icons.bookmark_add_outlined,
+                    Icons.bookmark_outline_rounded,
                     color: Colors.white,
                   ),
                 ),

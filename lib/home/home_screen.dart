@@ -7,9 +7,9 @@ import 'package:travel_mate/notification/notification.dart';
 import 'package:travel_mate/profile/profile.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key, required this.user});
+  HomeScreen({super.key, required this.userid});
 
-  User user;
+  int userid;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -22,17 +22,27 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget pageScreen() {
     Widget? screen;
 
+// to delete
+    User inUser = User(
+      userid: 101,
+      username: "sdas",
+      userAccount: UserAcount(
+        emailAddress: "Sds",
+        password: "Asdas",
+      ),
+    );
+
     if (currentPage == "home") {
       screen = HomeContent(
-        user: widget.user,
+        userid: widget.userid,
       );
     } else if (currentPage == "profile") {
       screen = Profile(
-        user: widget.user,
+        userid: widget.userid,
       );
     } else if (currentPage == "community") {
       screen = CommunityPage(
-        user: widget.user,
+        user: inUser,
       );
     } else if (currentPage == "destination") {
       screen = DestinationPage();
@@ -40,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
       screen = NotificationPage();
     } else {
       screen = HomeContent(
-        user: widget.user,
+        userid: widget.userid,
       );
     }
 

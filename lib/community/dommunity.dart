@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travel_mate/community/cornerscreen.dart';
 import 'package:travel_mate/community/groupchat.dart';
 import 'package:travel_mate/components/cornercard.dart';
 import 'package:travel_mate/components/groupcard.dart';
@@ -31,7 +32,7 @@ class _CommunityPageState extends State<CommunityPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text("Comunity", style: titleStyle()),
-              const SizedBox(height: 32),
+              const SizedBox(height: 12),
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
@@ -42,11 +43,18 @@ class _CommunityPageState extends State<CommunityPage> {
                 child: GroupCard(),
               ),
               const SizedBox(height: 16),
-              CornerCard(),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => CornerScreen(user: widget.user)));
+                },
+                child: CornerCard(),
+              ),
               const SizedBox(height: 32),
               Text("Private chats", style: titleStyle()),
               Expanded(
                 child: ListView.builder(
+                  padding: EdgeInsets.symmetric(vertical: 12),
                   itemCount: privateChats.length,
                   itemBuilder: (_, i) {
                     final uc = privateChats[i];

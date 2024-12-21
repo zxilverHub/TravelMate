@@ -1,0 +1,33 @@
+{
+    "destinations": [
+        {
+            "id": 1,
+            "name": "Epic BoraEats",
+            "distance": 0
+        },
+
+        {
+            "id": 2,
+            "name": "Hamlet Place",
+            "distance": 100
+        },
+
+        {
+            "id": 3,
+            "name": "Puka Place",
+            "distance": 150
+        },
+
+        {
+            "id": 4,
+            "name": "Hakuna Matata Boracay",
+            "distance": 300
+        },
+
+        {
+            "id": 5,
+            "name": "La Carmela De Boracay",
+            "distance": 400
+        }
+    ]
+}
